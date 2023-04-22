@@ -12,7 +12,9 @@ public class SoldierAgent : MonoBehaviour
     public float stamina;
     // Other soldier properties as needed
 
-    public AgentType agentType;
+    //Stores the list of agentTypes this soldierAgent has (facilitates hybridization of types, can have a max of 3 types at one time)
+    public List<AgentType> agentType = new List<AgentType>();
+    public int agentTypeCount = 0;
 
 
     public List<ProjectWeapon> weapons = new List<ProjectWeapon>();
@@ -39,6 +41,7 @@ public class SoldierAgent : MonoBehaviour
     public float fearThreshold;
     public float currentFearLevel;
 
+    public bool isCommander = false;
     public bool isCautious = true;
     public bool isCommanderDirected = true;
 
@@ -154,8 +157,9 @@ public class SoldierAgent : MonoBehaviour
 
     public void AssignAgentType(AgentType newAgentType)
     {
-        agentType = newAgentType;
-        AddAbility(agentType);
+        agentType[agentTypeCount] = newAgentType;
+        AddAbility(agentType[agentTypeCount]);
+        agentTypeCount++;
     }
 
     public void AddAbility(AgentType ability)

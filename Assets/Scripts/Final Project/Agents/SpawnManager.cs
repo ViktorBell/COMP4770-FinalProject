@@ -50,10 +50,8 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void StartSpawningEnemyCreatures()
     {
-       
-        SpawnSoldierAgents(numberOfTeams, defaultTeamSize);
         StartCoroutine(SpawnEnemyCreatures());
     }
 
@@ -77,7 +75,7 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    private void SpawnSoldierAgents(int numTeams, int teamSize)
+    public void SpawnSoldierAgentTeams(int numTeams, int teamSize)
     {
         for (int i = 0; i < numTeams; i++)
         {
@@ -121,6 +119,8 @@ public class SpawnManager : MonoBehaviour
             }
         }
 
+        commander.AssignAgentType(commanderAgentType);
+        commander.isCommander = true;
         // You can now assign the commander role to the SoldierAgent instance with the highest score
         // This can be done by setting a property, calling a method, or any other way you have implemented the commander role
     }
